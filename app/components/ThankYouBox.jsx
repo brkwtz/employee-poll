@@ -50,9 +50,9 @@ export default class ThankYouBox extends React.Component {
           <p>Your answers will always remain anonymous and will be viewed by the following managers:</p>
         </div>
         <div id="managers">
-          {this.props.managers.forEach(manager => {
+          {this.props.managers.map(manager => {
             return (
-              <div class="manager">
+              <div className="manager" key={manager.name}>
                 <img src={manager.avatarUrl}></img>
                 <p>{manager.name}</p>
               </div>

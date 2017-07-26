@@ -41923,10 +41923,10 @@ var ThankYouBox = function (_React$Component) {
         _react2.default.createElement(
           "div",
           { id: "managers" },
-          this.props.managers.forEach(function (manager) {
+          this.props.managers.map(function (manager) {
             return _react2.default.createElement(
               "div",
-              { "class": "manager" },
+              { className: "manager", key: manager.name },
               _react2.default.createElement("img", { src: manager.avatarUrl }),
               _react2.default.createElement(
                 "p",
