@@ -9781,14 +9781,13 @@ var _Poll = __webpack_require__(184);
 
 var _Poll2 = _interopRequireDefault(_Poll);
 
+var _lodash = __webpack_require__(192);
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //------------------seed data below------------------//
-
-// import {Router, Route, IndexRedirect, browserHistory} from 'react-router'
-var QUESTIONS = [{ prompt: "I feel comfortable working and interacting with the colleagues on my team.", rating: null, comment: null }, { prompt: "My direct manager gives me necessary support and clear objectives.", rating: null, comment: null }, { prompt: "I like my work environment, and I believe it helps me perform at my best.", rating: null, comment: null }, { prompt: "I am satisfied with my roles and responsibilities.", rating: null, comment: null }, { prompt: "I feel like I have a healthy work/life balance.", rating: null, comment: null }];
-
-// replace this value with the value of the query param
 
 // import {connect, Provider} from 'react-redux'
 
@@ -9796,7 +9795,12 @@ var QUESTIONS = [{ prompt: "I feel comfortable working and interacting with the 
 // import store from './store'
 
 //import components and containers
-var RATING = '5';
+var QUESTIONS = _lodash2.default.shuffle([{ prompt: "I feel comfortable working and interacting with the colleagues on my team.", rating: null, comment: null }, { prompt: "My direct manager gives me necessary support and clear objectives.", rating: null, comment: null }, { prompt: "I like my work environment, and I believe it helps me perform at my best.", rating: null, comment: null }, { prompt: "I am satisfied with my roles and responsibilities.", rating: null, comment: null }, { prompt: "I feel like I have a healthy work/life balance.", rating: null, comment: null }]);
+
+// replace this value with the value of the query param
+
+// import {Router, Route, IndexRedirect, browserHistory} from 'react-router'
+var RATING = 5;
 
 // this is a static value for testing purposes
 var MANAGERS = [{ name: "Marcus Perezi-Tormos", avatarUrl: "/images/marcus" }, { name: "Simon Rakosi", avatarUrl: "/images/simon" }];
@@ -22453,7 +22457,7 @@ var _PollQuestions = __webpack_require__(188);
 
 var _PollQuestions2 = _interopRequireDefault(_PollQuestions);
 
-var _SubmitButton = __webpack_require__(194);
+var _SubmitButton = __webpack_require__(191);
 
 var _SubmitButton2 = _interopRequireDefault(_SubmitButton);
 
@@ -22525,36 +22529,50 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var ThankYouBox = function (_React$Component) {
   _inherits(ThankYouBox, _React$Component);
 
-  function ThankYouBox() {
+  function ThankYouBox(props) {
     _classCallCheck(this, ThankYouBox);
 
-    return _possibleConstructorReturn(this, (ThankYouBox.__proto__ || Object.getPrototypeOf(ThankYouBox)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (ThankYouBox.__proto__ || Object.getPrototypeOf(ThankYouBox)).call(this, props));
+
+    _this.state = {
+      ratingResponse: "",
+      ratingImageUrl: ""
+    };
+    return _this;
   }
 
   _createClass(ThankYouBox, [{
-    key: 'render',
-    value: function render() {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
       var ratingImageUrlSegment = void 0;
-      var ratingImageUrl = "/images/" + ratingImageUrlSegment + ".svg";
       var ratingResponseSegment = void 0;
-      var ratingResponse = ratingResponseSegment + ' Thank you for your feedback.';
 
-      if (this.props.rating === '5') {
+      if (this.props.rating === 5) {
         ratingImageUrlSegment = "VeryHappy";
         ratingResponseSegment = "Awesome!";
-      } else if (this.props.rating === '4') {
+      } else if (this.props.rating === 4) {
         ratingImageUrlSegment = "Happy";
         ratingResponseSegment = "Great!";
-      } else if (this.props.rating === '3') {
+      } else if (this.props.rating === 3) {
         ratingImageUrlSegment = "Neutral";
         ratingResponseSegment = "OK... things could be better.";
-      } else if (this.props.rating === '2') {
+      } else if (this.props.rating === 2) {
         ratingImageUrlSegment = "Unhappy";
         ratingResponseSegment = "Mmmmh, things should improve.";
-      } else if (this.props.rating === '1') {
+      } else if (this.props.rating === 1) {
         ratingImageUrlSegment = "VeryUnhappy";
         ratingResponseSegment = "Oops, something needs to change.";
+      } else {
+        ratingImageUrlSegment = "Neutral";
+        ratingResponseSegment = "OK... things could be better.";
       }
+
+      this.setState({ ratingImageUrl: "/images/" + ratingImageUrlSegment + ".svg" });
+      this.setState({ ratingResponse: ratingResponseSegment + ' Thank you for your feedback.' });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
 
       return _react2.default.createElement(
         'div',
@@ -22562,7 +22580,7 @@ var ThankYouBox = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { id: 'ratingImage' },
-          _react2.default.createElement('img', { src: ratingImageUrl })
+          _react2.default.createElement('img', { src: this.state.ratingImageUrl })
         ),
         _react2.default.createElement(
           'div',
@@ -22570,7 +22588,7 @@ var ThankYouBox = function (_React$Component) {
           _react2.default.createElement(
             'h1',
             null,
-            ratingResponse
+            this.state.ratingResponse
           )
         ),
         _react2.default.createElement(
@@ -22745,11 +22763,7 @@ var _reactDom = __webpack_require__(13);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _lodash = __webpack_require__(189);
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
-var _QuestionBox = __webpack_require__(192);
+var _QuestionBox = __webpack_require__(189);
 
 var _QuestionBox2 = _interopRequireDefault(_QuestionBox);
 
@@ -22773,7 +22787,6 @@ var PollQuestions = function (_React$Component) {
   _createClass(PollQuestions, [{
     key: 'render',
     value: function render() {
-      var randomizedQuestions = _lodash2.default.shuffle(this.props.questions);
 
       return _react2.default.createElement(
         'div',
@@ -22783,7 +22796,7 @@ var PollQuestions = function (_React$Component) {
           null,
           'Do you agree with the following statements:'
         ),
-        randomizedQuestions.map(function (question) {
+        this.props.questions.map(function (question) {
           return _react2.default.createElement(_QuestionBox2.default, { key: question.prompt, question: question });
         })
       );
@@ -22797,6 +22810,196 @@ exports.default = PollQuestions;
 
 /***/ }),
 /* 189 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(12);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(13);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _RatingsBar = __webpack_require__(190);
+
+var _RatingsBar2 = _interopRequireDefault(_RatingsBar);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var QuestionBox = function (_React$Component) {
+  _inherits(QuestionBox, _React$Component);
+
+  function QuestionBox(props) {
+    _classCallCheck(this, QuestionBox);
+
+    var _this = _possibleConstructorReturn(this, (QuestionBox.__proto__ || Object.getPrototypeOf(QuestionBox)).call(this, props));
+
+    _this.state = { commentStyle: { display: "none" } };
+    _this.handleClick = _this.handleClick.bind(_this);
+    return _this;
+  }
+
+  _createClass(QuestionBox, [{
+    key: 'handleClick',
+    value: function handleClick() {
+      this.setState({ commentStyle: "contents" });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'question' },
+        _react2.default.createElement(
+          'h1',
+          null,
+          this.props.question.prompt
+        ),
+        _react2.default.createElement(_RatingsBar2.default, null),
+        _react2.default.createElement(
+          'form',
+          null,
+          _react2.default.createElement(
+            'button',
+            { onClick: this.handleClick },
+            'Add comment'
+          ),
+          _react2.default.createElement('textarea', { style: this.state.commentStyle, placeholder: 'Anything to add or suggest to your manager?' })
+        )
+      );
+    }
+  }]);
+
+  return QuestionBox;
+}(_react2.default.Component);
+
+exports.default = QuestionBox;
+
+/***/ }),
+/* 190 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(12);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(13);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var RatingsBar = function (_React$Component) {
+  _inherits(RatingsBar, _React$Component);
+
+  function RatingsBar() {
+    _classCallCheck(this, RatingsBar);
+
+    return _possibleConstructorReturn(this, (RatingsBar.__proto__ || Object.getPrototypeOf(RatingsBar)).apply(this, arguments));
+  }
+
+  _createClass(RatingsBar, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'p',
+        null,
+        'RATINGS BAR HERE'
+      );
+    }
+  }]);
+
+  return RatingsBar;
+}(_react2.default.Component);
+
+exports.default = RatingsBar;
+
+/***/ }),
+/* 191 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(12);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(13);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SubmitButton = function (_React$Component) {
+  _inherits(SubmitButton, _React$Component);
+
+  function SubmitButton() {
+    _classCallCheck(this, SubmitButton);
+
+    return _possibleConstructorReturn(this, (SubmitButton.__proto__ || Object.getPrototypeOf(SubmitButton)).apply(this, arguments));
+  }
+
+  _createClass(SubmitButton, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'button',
+        null,
+        'Send Answers ->'
+      );
+    }
+  }]);
+
+  return SubmitButton;
+}(_react2.default.Component);
+
+exports.default = SubmitButton;
+
+/***/ }),
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -39885,10 +40088,10 @@ exports.default = PollQuestions;
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(190), __webpack_require__(191)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(193), __webpack_require__(194)(module)))
 
 /***/ }),
-/* 190 */
+/* 193 */
 /***/ (function(module, exports) {
 
 var g;
@@ -39915,7 +40118,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 191 */
+/* 194 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -39941,196 +40144,6 @@ module.exports = function(module) {
 	return module;
 };
 
-
-/***/ }),
-/* 192 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(12);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(13);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _RatingsBar = __webpack_require__(193);
-
-var _RatingsBar2 = _interopRequireDefault(_RatingsBar);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var QuestionBox = function (_React$Component) {
-  _inherits(QuestionBox, _React$Component);
-
-  function QuestionBox(props) {
-    _classCallCheck(this, QuestionBox);
-
-    var _this = _possibleConstructorReturn(this, (QuestionBox.__proto__ || Object.getPrototypeOf(QuestionBox)).call(this, props));
-
-    _this.state = { commentStyle: { display: "none" } };
-    _this.handleClick = _this.handleClick.bind(_this);
-    return _this;
-  }
-
-  _createClass(QuestionBox, [{
-    key: 'handleClick',
-    value: function handleClick() {
-      this.setState({ commentStyle: null });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        { className: 'question' },
-        _react2.default.createElement(
-          'h1',
-          null,
-          this.props.question.prompt
-        ),
-        _react2.default.createElement(_RatingsBar2.default, null),
-        _react2.default.createElement(
-          'form',
-          null,
-          _react2.default.createElement(
-            'button',
-            { onClick: this.handleClick },
-            'Add comment'
-          ),
-          _react2.default.createElement('textarea', { style: this.state.commentStyle, placeholder: 'Anything to add or suggest to your manager?' })
-        )
-      );
-    }
-  }]);
-
-  return QuestionBox;
-}(_react2.default.Component);
-
-exports.default = QuestionBox;
-
-/***/ }),
-/* 193 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(12);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(13);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var RatingsBar = function (_React$Component) {
-  _inherits(RatingsBar, _React$Component);
-
-  function RatingsBar() {
-    _classCallCheck(this, RatingsBar);
-
-    return _possibleConstructorReturn(this, (RatingsBar.__proto__ || Object.getPrototypeOf(RatingsBar)).apply(this, arguments));
-  }
-
-  _createClass(RatingsBar, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'p',
-        null,
-        'RATINGS BAR HERE'
-      );
-    }
-  }]);
-
-  return RatingsBar;
-}(_react2.default.Component);
-
-exports.default = RatingsBar;
-
-/***/ }),
-/* 194 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(12);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(13);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var SubmitButton = function (_React$Component) {
-  _inherits(SubmitButton, _React$Component);
-
-  function SubmitButton() {
-    _classCallCheck(this, SubmitButton);
-
-    return _possibleConstructorReturn(this, (SubmitButton.__proto__ || Object.getPrototypeOf(SubmitButton)).apply(this, arguments));
-  }
-
-  _createClass(SubmitButton, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'button',
-        null,
-        'Send Answers ->'
-      );
-    }
-  }]);
-
-  return SubmitButton;
-}(_react2.default.Component);
-
-exports.default = SubmitButton;
 
 /***/ })
 /******/ ]);

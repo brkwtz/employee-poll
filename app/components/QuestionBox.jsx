@@ -12,7 +12,7 @@ export default class QuestionBox extends React.Component {
   }
 
   handleClick() {
-    this.setState({commentStyle: null})
+    this.setState({commentStyle: "contents"})
   }
 
   render() {

@@ -2,36 +2,51 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 export default class ThankYouBox extends React.Component {
-  render() {
-    let ratingImageUrlSegment
-    let ratingImageUrl = "/images/" + ratingImageUrlSegment + ".svg"
-    let ratingResponseSegment
-    let ratingResponse = ratingResponseSegment + ' Thank you for your feedback.'
+  constructor(props) {
+    super(props)
+    this.state = {
+      ratingResponse: "",
+      ratingImageUrl: ""
+    }
+  }
 
-    if(this.props.rating === '5') {
+  componentDidMount() {
+    let ratingImageUrlSegment
+    let ratingResponseSegment
+
+    if(this.props.rating === 5) {
       ratingImageUrlSegment = "VeryHappy"
       ratingResponseSegment = "Awesome!"
-    } else if(this.props.rating === '4') {
+    } else if(this.props.rating === 4) {
       ratingImageUrlSegment = "Happy"
       ratingResponseSegment = "Great!"
-    } else if(this.props.rating === '3') {
+    } else if(this.props.rating === 3) {
       ratingImageUrlSegment = "Neutral"
       ratingResponseSegment = "OK... things could be better."
-    } else if(this.props.rating === '2') {
+    } else if(this.props.rating === 2) {
       ratingImageUrlSegment = "Unhappy"
       ratingResponseSegment = "Mmmmh, things should improve."
-    } else if(this.props.rating === '1') {
+    } else if(this.props.rating === 1) {
       ratingImageUrlSegment = "VeryUnhappy"
       ratingResponseSegment = "Oops, something needs to change."
+    } else {
+      ratingImageUrlSegment = "Neutral"
+      ratingResponseSegment = "OK... things could be better."
     }
+
+    this.setState({ratingImageUrl: "/images/" + ratingImageUrlSegment + ".svg"})
+    this.setState({ratingResponse: ratingResponseSegment + ' Thank you for your feedback.'})
+  }
+
+  render() {
 
     return (
       <div>
         <div id="ratingImage">
-          <img src={ratingImageUrl}></img>
+          <img src={this.state.ratingImageUrl}></img>
         </div>
         <div id="ratingResponse">
-          <h1>{ratingResponse}</h1>
+          <h1>{this.state.ratingResponse}</h1>
         </div>
         <div id="anonymousMessage">
           <p>Your answers will always remain anonymous and will be viewed by the following managers:</p>
