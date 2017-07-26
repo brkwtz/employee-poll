@@ -5,7 +5,6 @@ import QuestionBox from './QuestionBox.jsx'
 
 export default class PollQuestions extends React.Component {
   render() {
-
     return (
       <div id="questions">
         <h2>Do you agree with the following statements:</h2>

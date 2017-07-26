@@ -7,12 +7,13 @@ import RatingsBar from './RatingsBar.jsx'
 export default class QuestionBox extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {commentStyle: {display: "none"}}
+    this.state = {commentVisible: false}
     this.handleClick = this.handleClick.bind(this)
   }
 
-  handleClick() {
-    this.setState({commentStyle: "contents"})
+  handleClick(e) {
+    e.preventDefault()
+    this.setState({commentVisible: true})
   }
 
   render() {
@@ -22,7 +23,7 @@ export default class QuestionBox extends React.Component {
         <RatingsBar />
         <form>
           <button onClick={this.handleClick}>Add comment</button>
-          <textarea style={this.state.commentStyle} placeholder="Anything to add or suggest to your manager?"/>
+          { this.state.commentVisible ? <textarea style={this.state.commentStyle} placeholder="Anything to add or suggest to your manager?"/> : null }
         </form>
       </div>
     )

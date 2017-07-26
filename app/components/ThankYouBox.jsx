@@ -39,7 +39,6 @@ export default class ThankYouBox extends React.Component {
   }
 
   render() {
-
     return (
       <div>
         <div id="ratingImage">

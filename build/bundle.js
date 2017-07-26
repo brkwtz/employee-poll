@@ -22573,7 +22573,6 @@ var ThankYouBox = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-
       return _react2.default.createElement(
         'div',
         null,
@@ -22787,7 +22786,6 @@ var PollQuestions = function (_React$Component) {
   _createClass(PollQuestions, [{
     key: 'render',
     value: function render() {
-
       return _react2.default.createElement(
         'div',
         { id: 'questions' },
@@ -22849,15 +22847,16 @@ var QuestionBox = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (QuestionBox.__proto__ || Object.getPrototypeOf(QuestionBox)).call(this, props));
 
-    _this.state = { commentStyle: { display: "none" } };
+    _this.state = { commentVisible: false };
     _this.handleClick = _this.handleClick.bind(_this);
     return _this;
   }
 
   _createClass(QuestionBox, [{
     key: 'handleClick',
-    value: function handleClick() {
-      this.setState({ commentStyle: "contents" });
+    value: function handleClick(e) {
+      e.preventDefault();
+      this.setState({ commentVisible: true });
     }
   }, {
     key: 'render',
@@ -22879,7 +22878,7 @@ var QuestionBox = function (_React$Component) {
             { onClick: this.handleClick },
             'Add comment'
           ),
-          _react2.default.createElement('textarea', { style: this.state.commentStyle, placeholder: 'Anything to add or suggest to your manager?' })
+          this.state.commentVisible ? _react2.default.createElement('textarea', { style: this.state.commentStyle, placeholder: 'Anything to add or suggest to your manager?' }) : null
         )
       );
     }
