@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 
 import ThankYouBox from './ThankYouBox.jsx'
 import ExtraFeedbackBox from './ExtraFeedbackBox.jsx'

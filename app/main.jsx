@@ -1,16 +1,10 @@
 'use strict'
 import React from 'react'
-// import {Router, Route, IndexRedirect, browserHistory} from 'react-router'
-import ReactDOM from 'react-dom'
-// import {connect, Provider} from 'react-redux'
-
-//import redux store
-// import store from './store'
-
-//import components and containers
-import Poll from './components/Poll.jsx'
-
+import {Router, Route, IndexRedirect, browserHistory} from 'react-router'
+import {render} from 'react-dom'
 import _ from 'lodash'
+
+import Poll from './components/Poll.jsx'
 
 //------------------seed data below------------------//
 
@@ -31,8 +25,10 @@ const MANAGERS = [
   {name: "Simon Rakosi", avatarUrl: "/images/simon"}
 ]
 
+//------------------seed data above------------------//
+
 //render root component
-ReactDOM.render(
+render(
   <Poll questions={QUESTIONS} managers={MANAGERS} rating={RATING}/>,
   document.getElementById('container')
 );
