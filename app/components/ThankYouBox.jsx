@@ -38,6 +38,8 @@ export default class ThankYouBox extends React.Component {
   }
 
   render() {
+    console.log('this.state',this.state)
+    console.log('this.props.managers',this.props.managers)
     return (
       <div>
         <div id="ratingImage">
@@ -50,14 +52,14 @@ export default class ThankYouBox extends React.Component {
           <p>Your answers will always remain anonymous and will be viewed by the following managers:</p>
         </div>
         <div id="managers">
-          {this.props.managers.map(manager => {
+          {this.props.managers.length ? this.props.managers.map(manager => {
             return (
               <div className="manager" key={manager.name}>
                 <img src={manager.avatarUrl}></img>
                 <p>{manager.name}</p>
               </div>
             )
-            })
+            }) : null
           }
         </div>
       </div>

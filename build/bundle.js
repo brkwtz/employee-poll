@@ -12673,7 +12673,12 @@ var _axios2 = _interopRequireDefault(_axios);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //---------REDUCER-------//
-var initialState = { questions: [], managers: {}, mood: 1, submitted: false };
+var initialState = {
+  questions: [],
+  managers: {},
+  mood: 1,
+  submitted: false
+};
 
 function pollPage() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
@@ -12691,10 +12696,10 @@ function pollPage() {
     default:
       newState = state;
       break;
-  }
+  };
 
   return newState;
-}
+};
 
 //---------CONSTANTS-------//
 
@@ -12703,6 +12708,7 @@ var SUBMIT_FORM = exports.SUBMIT_FORM = "SUBMIT_FORM";
 
 //---------ACTION CREATORS-------//
 var getFormData = exports.getFormData = function getFormData(questions, managers) {
+  console.log('hitting getFormData');
   return {
     type: GET_FORM_DATA,
     questions: questions,
@@ -12719,10 +12725,12 @@ var submitForm = exports.submitForm = function submitForm(questions) {
 
 //---------THUNKS-------//
 var loadForm = exports.loadForm = function loadForm() {
+  console.log('calling loadForm');
   return function (dispatch) {
     _axios2.default.get('/api/demo-question').then(function (res) {
       return res.data;
     }).then(function (data) {
+      console.log('getformdata');
       dispatch(getFormData(data.questions, data.managers));
     }).catch();
   };
@@ -13038,7 +13046,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     { history: _reactRouterDom.hashHistory },
     _react2.default.createElement(
       _reactRouterDom.Route,
-      { path: '/' },
+      { exact: true, path: '/' },
       _react2.default.createElement(
         _reactRouterDom.Route,
         { path: '/demo-question', component: _Poll2.default },
@@ -46680,14 +46688,14 @@ var Poll = function (_React$Component) {
   }
 
   _createClass(Poll, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
+    key: 'componentWillMount',
+    value: function componentWillMount() {
       var _this2 = this;
 
-      _store2.default.dispatch((0, _reducer.loadForm)());
       this.unsubscribe = _store2.default.subscribe(function () {
         _this2.setState(_store2.default.getState());
       });
+      _store2.default.dispatch((0, _reducer.loadForm)());
     }
   }, {
     key: 'componentWillUnmount',
@@ -46697,8 +46705,7 @@ var Poll = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      console.log('this.props', this.props);
-      console.log('this.state', this.state);
+      console.log('poll state', this.state);
       return _react2.default.createElement(
         'div',
         null,
@@ -46787,6 +46794,8 @@ var ThankYouBox = function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      console.log('this.state', this.state);
+      console.log('this.props.managers', this.props.managers);
       return _react2.default.createElement(
         "div",
         null,
@@ -46816,7 +46825,7 @@ var ThankYouBox = function (_React$Component) {
         _react2.default.createElement(
           "div",
           { id: "managers" },
-          this.props.managers.map(function (manager) {
+          this.props.managers.length ? this.props.managers.map(function (manager) {
             return _react2.default.createElement(
               "div",
               { className: "manager", key: manager.name },
@@ -46827,7 +46836,7 @@ var ThankYouBox = function (_React$Component) {
                 manager.name
               )
             );
-          })
+          }) : null
         )
       );
     }
@@ -46964,6 +46973,10 @@ var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _lodash = __webpack_require__(246);
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
 var _QuestionBox = __webpack_require__(296);
 
 var _QuestionBox2 = _interopRequireDefault(_QuestionBox);
@@ -46988,6 +47001,8 @@ var PollQuestions = function (_React$Component) {
   _createClass(PollQuestions, [{
     key: 'render',
     value: function render() {
+      var questions = _lodash2.default.shuffle(this.props.questions);
+
       return _react2.default.createElement(
         'div',
         { id: 'questions' },
@@ -46996,9 +47011,9 @@ var PollQuestions = function (_React$Component) {
           null,
           'Do you agree with the following statements:'
         ),
-        this.props.questions.map(function (question) {
+        questions.length ? questions.map(function (question) {
           return _react2.default.createElement(_QuestionBox2.default, { key: question.prompt, question: question });
-        })
+        }) : null
       );
     }
   }]);

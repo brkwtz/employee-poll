@@ -14,11 +14,11 @@ export default class Poll extends React.Component {
     this.state = Object.assign({}, store.getState())
   }
 
-  componentDidMount() {
-    store.dispatch(loadForm())
+  componentWillMount() {
     this.unsubscribe = store.subscribe(() => {
       this.setState(store.getState())
     })
+    store.dispatch(loadForm())
   }
 
   componentWillUnmount() {
@@ -26,8 +26,7 @@ export default class Poll extends React.Component {
   }
 
   render() {
-    console.log('this.props',this.props)
-    console.log('this.state',this.state)
+    console.log('poll state', this.state)
     return (
       <div>
         <ThankYouBox managers={this.state.managers} />

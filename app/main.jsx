@@ -12,7 +12,7 @@ import Poll from './components/Poll.jsx'
 render(
   <Provider store={store}>
     <Router history={hashHistory}>
-      <Route path='/'>
+      <Route exact path='/'>
         {/*<IndexRedirect to='/demo-question/:mood'/>*/}
         <Route path='/demo-question' component={Poll}>
           <Route path='/demo-question/:mood' component={Poll}/>
