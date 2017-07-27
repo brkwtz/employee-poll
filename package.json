@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev": "webpack-dev-server --content-base build/"
+    "start": "webpack -w & nodemon --watch server -e js,html app.js"
   },
   "author": "",
   "license": "ISC",
@@ -14,8 +14,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "morgan": "^1.8.2",
-    "webpack": "^3.4.0",
-    "webpack-dev-server": "^2.6.1"
+    "webpack": "^3.4.0"
   },
   "dependencies": {
     "body-parser": "^1.17.2",
