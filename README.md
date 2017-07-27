@@ -5,7 +5,7 @@ stack:
 react, redux, express.js, node.js
 
 how to run:
-- clone repo to your machine
+- clone repo
 - npm install
 - npm start
 - visit port 3000
