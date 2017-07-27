@@ -6,22 +6,25 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 
-//middleware
+const data = require('./data.js')
+
+// middleware
 app.use(morgan('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, './build')))
 
-//listen
+// listen
 const port = process.env.PORT || 3000
 const server = app.listen(port, () => {
   console.log('listening on port', port)
 })
 
+// routes
 app.get('/', (req, res, next) => {
   res.sendFile('index')
 })
 
-app.get('/:rating', (req, res, next) => {
-  res.json(req.rating)
+app.get('/api/demo-question', (req, res, next) => {
+  res.json(data)
 })
