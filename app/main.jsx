@@ -6,7 +6,7 @@ import {render} from 'react-dom'
 import _ from 'lodash'
 import {Provider} from 'react-redux'
 import store from './store'
-
+import {getAndSetMood} from './reducer'
 import Poll from './components/Poll.jsx'
 
 render(
@@ -14,9 +14,7 @@ render(
     <Router history={hashHistory}>
       <Route exact path='/'>
         {/*<IndexRedirect to='/demo-question/:mood'/>*/}
-        <Route path='/demo-question' component={Poll}>
-          <Route path='/demo-question/:mood' component={Poll}/>
-        </Route>
+        <Route path='/demo-question/:mood' component={Poll}/>
       </Route>
     </Router>
   </Provider>,

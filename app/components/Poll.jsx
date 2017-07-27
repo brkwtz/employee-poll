@@ -1,6 +1,6 @@
 import React from 'react'
 import store from './../store'
-import {loadForm} from './../reducer'
+import {loadForm, setMoodAttributes} from './../reducer'
 
 import ThankYouBox from './ThankYouBox.jsx'
 import ExtraFeedbackBox from './ExtraFeedbackBox.jsx'
@@ -19,6 +19,7 @@ export default class Poll extends React.Component {
       this.setState(store.getState())
     })
     store.dispatch(loadForm())
+    store.dispatch(setMoodAttributes(this.props.match.params.mood))
   }
 
   componentWillUnmount() {
@@ -26,10 +27,9 @@ export default class Poll extends React.Component {
   }
 
   render() {
-    console.log('poll state', this.state)
     return (
       <div>
-        <ThankYouBox managers={this.state.managers} />
+        <ThankYouBox managers={this.state.managers} mood={this.state.mood} ratingResponse={this.state.ratingResponse} ratingImageUrl={this.state.ratingImageUrl} />
         <PollQuestions questions={this.state.questions} />
         <ExtraFeedbackBox />
         <SubmitButton />
