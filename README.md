@@ -1,7 +1,10 @@
-# employee-poll
-I built this SPA to spec without using boilerplate or templates.
+purpose:
+collect employee feedback on working conditions
 
-# how to run
+stack:
+react, redux, express.js, node.js
+
+how to run:
 - clone repo to your machine
 - npm install
 - npm start
