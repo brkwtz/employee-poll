@@ -7,7 +7,9 @@ const initialState = {
   mood: 1,
   submitted: false,
   ratingResponse: '',
-  ratingImageUrl: ''
+  ratingImageUrl: '',
+  feedback: '',
+  submittable: false
 };
 
 export default function pollPage(state = initialState, action) {
@@ -26,6 +28,17 @@ export default function pollPage(state = initialState, action) {
       newState.ratingImageUrl = action.ratingImageUrl;
       break;
 
+    case ANSWER_QUESTION:
+      newState.questions = action.questions;
+      break;
+
+    case SUBMIT_FEEDBACK:
+      newState.feedback = action.feedback;
+      break;
+    
+    case ENABLE_SUBMIT:
+      newState.submittable = action.submittable;
+    
     default:
       newState = state;
       break;
@@ -34,13 +47,13 @@ export default function pollPage(state = initialState, action) {
   return newState;
 };
 
-
 //---------CONSTANTS-------//
 
 export const GET_FORM_DATA = "GET_FORM_DATA";
-export const SUBMIT_FORM = "SUBMIT_FORM";
 export const SET_MOOD = "SET_MOOD";
-
+export const ANSWER_QUESTION = "ANSWER_QUESTION";
+export const SUBMIT_FEEDBACK = "SUBMIT_FEEDBACK";
+export const ENABLE_SUBMIT = "ENABLE_SUBMIT";
 
 //---------ACTION CREATORS-------//
 export const getFormData = (questions, managers) => {
@@ -51,17 +64,27 @@ export const getFormData = (questions, managers) => {
   };
 };
 
-export const submitForm = (questions) => ({
-  type: SUBMIT_FORM,
-  submitted: true
-});
-
 export const getAndSetMood = (mood, ratingResponseSegment, ratingImageUrlSegment) => ({
   type: SET_MOOD,
   mood: mood,
   ratingResponse: ratingResponseSegment + ' Thank you for your feedback.',
   ratingImageUrl: "/images/" + ratingImageUrlSegment + ".svg" 
 });
+
+export const submitAnswers = (questions) => ({
+  type: ANSWER_QUESTION,
+  questions: questions
+});
+
+export const submitFeedback = (feedback) => ({
+  type: SUBMIT_FEEDBACK,
+  feedback: feedback
+})
+
+export const enableSubmit = () => ({
+  type: ENABLE_SUBMIT,
+  submittable: true
+})
 
 //--------FUNCTIONS------//
 export const setMoodAttributes = (mood) => {

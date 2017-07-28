@@ -9,7 +9,7 @@ export default class PollQuestions extends React.Component {
     return (
       <div id="questions">
         <h2>Do you agree with the following statements:</h2>
-        {questions.length ? questions.map(question => <QuestionBox key={question.prompt} question={question}/>) : null}
+        {questions.length ? questions.map(question => <QuestionBox questions={questions} key={question.prompt} question={question}/>) : null}
       </div>
     )
   }

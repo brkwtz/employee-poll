@@ -1,13 +1,25 @@
 import React from 'react'
-
-import CommentBox from './CommentBox.jsx'
+import {submitFeedback} from './../reducer'
 
 export default class ExtraFeedbackBox extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handleTextEnter = this.handleTextEnter.bind(this)
+  }
+
+  handleTextEnter(e) {
+    e.preventDefault()
+    const commentText = e.target.value
+    submitFeedback(commentText)
+  }
+
   render() {
     return (
       <div id="extraFeedback">
         <h1>Anything to Add?</h1>
-        <CommentBox />
+        <form>
+          <textarea className="comment" onChange={this.handleTextEnter} placeholder="Anything to add?"/>
+        </form>
       </div>
     )
   }
