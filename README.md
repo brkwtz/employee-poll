@@ -7,4 +7,4 @@ How to run:
 - clone repo
 - npm install
 - npm start
-- visit http://localhost:3000
+- visit http://localhost:3000/demo-question/1 (or /2, /3, /4, /5)
