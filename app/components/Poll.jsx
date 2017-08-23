@@ -8,7 +8,7 @@ import PollQuestions from './PollQuestions.jsx'
 import SubmittedBox from './SubmittedBox.jsx'
 import { StitchClient } from 'mongodb-stitch';
 
-let appId = 'employee-poll-uitzv';
+let appId = '<STITCH-APPID';
 let stitchClient = new StitchClient(appId);
 let db = stitchClient.service("mongodb", "mongodb-atlas").db("employee-poll");
 let pollResults = db.collection("pollResults");
