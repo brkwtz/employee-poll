@@ -6,6 +6,12 @@ import ThankYouBox from './ThankYouBox.jsx'
 import ExtraFeedbackBox from './ExtraFeedbackBox.jsx'
 import PollQuestions from './PollQuestions.jsx'
 import SubmittedBox from './SubmittedBox.jsx'
+import { StitchClient } from 'mongodb-stitch';
+
+let appId = 'employee-poll-uitzv';
+let stitchClient = new StitchClient(appId);
+let db = stitchClient.service("mongodb", "mongodb-atlas").db("employee-poll");
+let pollResults = db.collection("pollResults");
 
 export default class Poll extends React.Component {
 
@@ -33,20 +39,25 @@ export default class Poll extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
     this.setState({submitted: true})
+
+    pollResults.insert([{ dummyField1: 'placeholder' }, { dummyField2: 'placeholder' }])
+      .then((inserted) => {
+        console.log('success! the following data have been inserted:', inserted)
+      })
+      .catch(err);
   }
 
 
   render() {
-    // placeholder
     let submittable = true
-
+    
     return (
       <div>
         <div className="sidebar">
-          <a href="https://support.butterfly.ai/"><img id="butterfly" src="../images/Butterfly.svg"/></a>
+          <img id="butterfly" src="../images/Butterfly.svg"/>
           <img id="infoicon" src="../images/InfoIcon.svg"/>
         </div>
-        <div className="pageContent">
+      <div className="pageContent">
       {this.state.submitted ? 
       (<div>
         <SubmittedBox/>
@@ -56,7 +67,7 @@ export default class Poll extends React.Component {
         <PollQuestions questions={this.state.questions} />
         <ExtraFeedbackBox />
         <div>
-          { submittable ? <button onClick={this.handleSubmit}>Send Answers -></button> : <button disabled>Send Answers -></button> }
+          { submittable ? <button onClick={this.handleSubmit}>Send Answers</button> : <button disabled>Send Answers</button> }
         </div>
       </div>)
       }

@@ -4,9 +4,6 @@ export default class ThankYouBox extends React.Component {
   render() {
     return (
       <div id="headerBox">
-        <div id="editIcon">
-            <img src="../images/EditIcon.svg"/>
-        </div>
         <div id="header">
           <img id="ratingImage" src={this.props.ratingImageUrl}></img>
         </div>

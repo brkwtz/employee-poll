@@ -148,42 +148,12 @@ h2 {
 
 .barNotation {
     display: block;
-    text-align: center;
     margin-bottom: 10px;
 }
 
 .barNotation p {
     display: inline;
     padding: 20px;
-}
-
-.options {
-    background: #F7F7F7;
-    border: 3px solid #EDEDED;
-    border-radius: 20px;
-    width: 430px;
-    height: 42px;
-    margin-left: 30px;
-}
-
-div.options > input {
-	visibility: hidden;
-}
-
-div.options {
-	display: block;
-	margin: 0 0 0 -10px;
-	padding: 0 0 20px 0;  
-	height: 20px;
-	width: 150px;
-}
-
-div.options > img {
-	display: inline-block;
-	padding: 0px;
-	height:30px;
-	width:30px;
-	background: none;
 }
 
 .barRadio {

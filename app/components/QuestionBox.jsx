@@ -56,7 +56,7 @@ export default class QuestionBox extends React.Component {
     return (
       <div className="question">
         <h1>{this.props.question.prompt}</h1>
-        <div class="options">
+        <div className="options">
           <form>
            {ratings.map(rating => <input name="rating" className="barRadio" type="radio" key={rating} value={rating} onClick={e => this.handleRatingClick(e, rating)}></input>)}
           </form>
