@@ -3,12 +3,15 @@ import React from 'react'
 export default class ThankYouBox extends React.Component {
   render() {
     return (
-      <div>
+      <div id="headerBox">
+        <div id="editIcon">
+            <img src="../images/EditIcon.svg"/>
+        </div>
         <div id="header">
           <img id="ratingImage" src={this.props.ratingImageUrl}></img>
-          <h1>{this.props.ratingResponse}</h1>
         </div>
         <div id="anonymousMessage">
+          <h1>{this.props.ratingResponse}</h1>
           <p>Your answers will always remain anonymous and will be viewed by the following managers:</p>
           {this.props.managers.length ? this.props.managers.map(manager => {
           return (

@@ -5,30 +5,145 @@ body {
     color: #fff;
 }
 
-#ratingImage {
-    width: 100px;
-    float: left;
-    /* clear: both; */
+.sidebar {
+    float:left;
+    width:36px;
+    background:#0D4D54;
+    height: 100vmax;
+    margin: 0px;
+    padding: 0px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    margin-bottom: -3000px;
+    padding-bottom: 3000px;
 }
 
-#header h1 {
-    /* margin: 50px; */
-    /* clear: both; */
+#butterfly {
+    background: #2CE6CE;
+    position: absolute;
+    width: 18px;
+    height: 14px;
+    left: 6px;
+    top: 6px;
+    padding: 5px 3px;
+    border-radius: 2px;
+}
+
+#infoicon {
+    position: absolute;
+    top: 511px;
+    left: 10px;
+}
+
+.pageContent {
     float: left;
+    padding-left: 76px;
+}
+
+h2 {
+    font-size: 18px;
+    margin-bottom: 30px; 
+}
+
+#headerBox {
+    width: 502px;  
+    font-size: 12px;
+    left: 80px;
+}
+
+#header {
+    display: inline-block;
+}
+
+#ratingImage {
+     width: 120px; 
+    background: white;
+    border-radius: 50%;
+    padding: 5px;
+    display: inline-block;
+}
+
+#anonymousMessage {
+    color: hsla(0,0%,100%,.6);
+    margin: 15px;
+    display: inline-block;
+}
+
+#anonymousMessage h1 {
+    font-size: 18px;;
+    color: #fff;
+}
+
+#anonymousMessage p {
+    width: 248px;
+}
+
+.manager img {
+    width: 20px;
+    display: inline-block;
+    border-radius: 50%;
+    background: white;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.manager p {
+    display: inline-block;
 }
 
 .question {
     background: #fff;
-    border-radius: 4px;
-    margin: 40px 40px 40px 0px;
-    padding: 10px;
+    border-radius: 3px;
+    margin: 20px 40px 20px 0px;  
+    width: 500px;
+    padding: 24px 35px;
+    height: 240px;
+    position: relative; 
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px; 
+    color: #757575;
+    font-weight: 700;
+    text-align: left;
+
+}
+ .question:before {
+   content:"";
+   position: absolute;
+   right: 100%;
+   top: 20px;
+   width: 0;
+   height: 0;
+   border-top: 7.5px solid transparent;
+   border-right: 8px solid #fff;
+   border-bottom: 7.5px solid transparent;
+} 
+
+.question h1 {
+    width: 320px;
+    height: 56px;
+}
+
+.commentButton {
+    background:none!important;
+    color:#2CE6CE;
+    border:none; 
+    padding:0!important;
+    font: inherit;
+    font-size: 16px;
+    border-bottom:1px solid #2CE6CE; 
+    cursor: pointer;
+    display: block;
+    margin: auto;
 }
 
 #extraFeedback {
     background: #1b828e;
-    border-radius: 4px;
-    margin: 40px 40px 40px 0px;
-    padding: 10px;
+    color: #fff;
+}
+
+#extraFeedback:before {
+    border-right: 8px solid #1b828e;
 }
 
 .barNotation {
@@ -42,50 +157,80 @@ body {
     padding: 20px;
 }
 
-.ratingsBar {
-    background: yellow;
+.options {
+    background: #F7F7F7;
+    border: 3px solid #EDEDED;
     border-radius: 20px;
-    width: 200px;
-    display: block;
-    margin: auto;
+    width: 430px;
+    height: 42px;
+    margin-left: 30px;
+}
+
+div.options > input {
+	visibility: hidden;
+}
+
+div.options {
+	display: block;
+	margin: 0 0 0 -10px;
+	padding: 0 0 20px 0;  
+	height: 20px;
+	width: 150px;
+}
+
+div.options > img {
+	display: inline-block;
+	padding: 0px;
+	height:30px;
+	width:30px;
+	background: none;
 }
 
 .barRadio {
     margin: 13px;
 }
 
-.commentButton {
-    display: block;
-    margin: auto;
-} 
-
-.question {
-    color: #757575;
-    font-weight: 700;
-    text-align: left;
-}
-
-#anonymousMessage {
-    color: hsla(0,0%,100%,.6);
-    float: none;
-    clear: both;
-    margin: 15px;
-}
-
 .comment {
     display: block;
     margin: auto;
-    width: 200px;
+    width: 430px;
+    height: 110px;
 }
 
-.manager img {
-    height: 20px;
-    width: 20px;
-    display: inline;
-    margin: 5px;
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #C3C3C3;
+  font-size: 18px;
+  padding: 11px 0px 0px 24px;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #C3C3C3;
+  font-size: 18px;
+  padding: 11px 0px 0px 24px;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #C3C3C3;
+  font-size: 18px;
+  padding: 11px 0px 0px 24px;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #C3C3C3;
+  font-size: 18px;
+  padding: 11px 0px 0px 24px;
 }
 
-.manager p {
-    display: inline;
+.manager {
+    font-size: 10px;
+}
+
+#editIcon {
+    height: 24px;
+    width: 53px;
+    background: #0D4D54;
+    border-radius: 3px;
+    top: 57px;
+    left: 84px;
+}
+
+#editIcon img {
     margin: 5px;
 }

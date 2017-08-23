@@ -56,16 +56,17 @@ export default class QuestionBox extends React.Component {
     return (
       <div className="question">
         <h1>{this.props.question.prompt}</h1>
-        <form className="ratingsBar">
-          {ratings.map(rating => <input name="rating" className="barRadio" type="radio" key={rating} value={rating} onClick={e => this.handleRatingClick(e, rating)}></input>)}
-        </form>
+        <div class="options">
+          <form>
+           {ratings.map(rating => <input name="rating" className="barRadio" type="radio" key={rating} value={rating} onClick={e => this.handleRatingClick(e, rating)}></input>)}
+          </form>
+        </div>
         <div className="barNotation">
           <p>Strongly Agree</p>
           <p>Strongly Disagree</p>
         </div>
-        <form className="comment">
-          <button className="commentButton" onClick={this.handleAddCommentClick}>Add comment</button>
-          { this.state.commentVisible ? <textarea className="comment" style={this.state.commentStyle} onChange={this.handleTextEnter} placeholder="Anything to add or suggest to your manager?"/> : null }
+        <form>
+          { this.state.commentVisible ? <textarea className="comment" style={this.state.commentStyle} onChange={this.handleTextEnter} placeholder="Anything to add or suggest to your manager?"/> : <button className="commentButton" onClick={this.handleAddCommentClick}>Add comment</button> }
         </form>
       </div>
     )

@@ -15,7 +15,7 @@ export default class ExtraFeedbackBox extends React.Component {
 
   render() {
     return (
-      <div id="extraFeedback">
+      <div className="question" id="extraFeedback">
         <h1>Anything to Add?</h1>
         <form>
           <textarea className="comment" onChange={this.handleTextEnter} placeholder="Anything to add?"/>

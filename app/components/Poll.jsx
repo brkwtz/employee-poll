@@ -42,6 +42,11 @@ export default class Poll extends React.Component {
 
     return (
       <div>
+        <div className="sidebar">
+          <a href="https://support.butterfly.ai/"><img id="butterfly" src="../images/Butterfly.svg"/></a>
+          <img id="infoicon" src="../images/InfoIcon.svg"/>
+        </div>
+        <div className="pageContent">
       {this.state.submitted ? 
       (<div>
         <SubmittedBox/>
@@ -55,6 +60,7 @@ export default class Poll extends React.Component {
         </div>
       </div>)
       }
+      </div>
       </div>
     )
   }
